@@ -1,0 +1,2 @@
+E:/Quickpass/v1.8/quickpass-kiosk-app/android/app/.cxx/Debug/6o5h572f/armeabi-v7a/CMakeFiles/edit_cache.dir
+E:/Quickpass/v1.8/quickpass-kiosk-app/android/app/.cxx/Debug/6o5h572f/armeabi-v7a/CMakeFiles/rebuild_cache.dir

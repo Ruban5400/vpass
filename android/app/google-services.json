@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "759266512784",
+    "project_id": "vpass-kauvery",
+    "storage_bucket": "vpass-kauvery.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:759266512784:android:bda19f5d43bceb7e6e6d15",
+        "android_client_info": {
+          "package_name": "bfx.vpass.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC99-0S8yv8JoLBNv3GVJmfBIVXOc6WtNE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:759266512784:android:fee148d23d07130d6e6d15",
+        "android_client_info": {
+          "package_name": "bfx.vpass.employee.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC99-0S8yv8JoLBNv3GVJmfBIVXOc6WtNE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
