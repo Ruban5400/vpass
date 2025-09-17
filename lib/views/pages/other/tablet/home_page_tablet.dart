@@ -55,6 +55,7 @@ class _HomePageTabletState extends State<HomePageTablet> {
                                 SizedBox(
                                     child: Image(
                                         image: AssetImage(Images.logo))),
+                                // Removed language options
                                 // Row(
                                 //   mainAxisAlignment:
                                 //       MainAxisAlignment.spaceBetween,
