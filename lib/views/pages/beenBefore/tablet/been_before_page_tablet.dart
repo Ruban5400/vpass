@@ -146,15 +146,15 @@ class BeenBeforePageTablet extends StatelessWidget {
                         flex: 1,
                         child: Stack(
                           children: [
-                            Container(
-                              height: 1100.h,
-                              width: double.infinity,
-                              decoration: BoxDecoration(
-                                image: DecorationImage(
-                                    image: AssetImage(Images.bg),
-                                    fit: BoxFit.cover),
-                              ),
-                              child: Positioned(
+                            Positioned(
+                              child: Container(
+                                height: 1100.h,
+                                width: double.infinity,
+                                decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                      image: AssetImage(Images.bg),
+                                      fit: BoxFit.cover),
+                                ),
                                 child: Padding(
                                   padding: EdgeInsets.only(top: 195.h),
                                   child: Text(
@@ -168,6 +168,28 @@ class BeenBeforePageTablet extends StatelessWidget {
                                 ),
                               ),
                             ),
+                            // Container(
+                            //   height: 1100.h,
+                            //   width: double.infinity,
+                            //   decoration: BoxDecoration(
+                            //     image: DecorationImage(
+                            //         image: AssetImage(Images.bg),
+                            //         fit: BoxFit.cover),
+                            //   ),
+                            //   child: Positioned(
+                            //     child: Padding(
+                            //       padding: EdgeInsets.only(top: 195.h),
+                            //       child: Text(
+                            //         'make_visitor_id'.tr,
+                            //         textAlign: TextAlign.center,
+                            //         style: TextStyle(
+                            //             fontSize: 40.sp,
+                            //             fontWeight: FontWeight.w700,
+                            //             color: AppColor.primaryColor),
+                            //       ),
+                            //     ),
+                            //   ),
+                            // ),
                           ],
                         ),
                       ),
