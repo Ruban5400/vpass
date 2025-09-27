@@ -36,6 +36,7 @@ class EmployeeData {
   EmployeeData({
     int? id,
     String? name,
+    String? deptName,
     String? phone,
     String? countryCode,
     String? countryCodeName,
@@ -49,6 +50,7 @@ class EmployeeData {
   }) {
     _id = id;
     _name = name;
+    _deptName = deptName;
     _phone = phone;
     _countryCode = countryCode;
     _countryCodeName = countryCodeName;
@@ -64,6 +66,7 @@ class EmployeeData {
   EmployeeData.fromJson(dynamic json) {
     _id = json['id'];
     _name = json['name'];
+    _deptName = json['department']['name'];
     _phone = json['phone'];
     _countryCode = json['country_code'];
     _countryCodeName = json['country_code_name'];
@@ -77,6 +80,7 @@ class EmployeeData {
   }
   int? _id;
   String? _name;
+  String? _deptName;
   String? _phone;
   String? _countryCode;
   String? _countryCodeName;
@@ -90,6 +94,7 @@ class EmployeeData {
 
   int? get id => _id;
   String? get name => _name;
+  String? get deptName => _deptName;
   String? get phone => _phone;
   String? get countryCode => _countryCode;
   String? get countryCodeName => _countryCodeName;
@@ -105,6 +110,7 @@ class EmployeeData {
     final map = <String, dynamic>{};
     map['id'] = _id;
     map['name'] = _name;
+    map['deptName'] = _deptName;
     map['phone'] = _phone;
     map['country_code'] = _countryCode;
     map['country_code_name'] = _countryCodeName;

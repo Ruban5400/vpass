@@ -8,7 +8,6 @@ import 'package:visitor_pass/routes/routes.dart';
 import 'package:clarity_flutter/clarity_flutter.dart';
 import 'constants/constants.dart';
 import 'firebase_options.dart';
-// import 'package:device_preview/device_preview.dart';
 
 
 final config = ClarityConfig(
@@ -21,7 +20,6 @@ Future main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-
   dynamic langValue = const Locale('en', 'US');
   if (box.read('lang') != null) {
     langValue = Locale(box.read('lang'), box.read('langKey'));
@@ -29,13 +27,6 @@ Future main() async {
     langValue = const Locale('en', 'US');
   }
 
-  // device preview
-  // runApp(
-  //   DevicePreview(
-  //     enabled: true,
-  //     builder: (context) => VisitorPass(langValue: langValue), // Wrap your app
-  //   ),
-  // );
   runApp(ClarityWidget(
     app: VisitorPass(langValue: langValue),
     clarityConfig: config,

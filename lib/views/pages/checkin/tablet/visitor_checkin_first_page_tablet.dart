@@ -159,7 +159,7 @@ class VisitorCheckInFirstPageTablet extends StatelessWidget {
                                                 items: (filter, loadProps) =>
                                                     controller.employeeList.map(
                                                         (EmployeeData value) {
-                                                  return value.name.toString();
+                                                  return "${value.name.toString()} - ${value.deptName.toString()}";
                                                 }).toList(),
                                                 onChanged: (employeeName) {
                                                   EmployeeData employee =
