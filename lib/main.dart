@@ -5,24 +5,33 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:visitor_pass/language/language.dart';
 import 'package:visitor_pass/routes/routes.dart';
-
+import 'package:clarity_flutter/clarity_flutter.dart';
 import 'constants/constants.dart';
 import 'firebase_options.dart';
 
+
+final config = ClarityConfig(
+    projectId: "tgjiyvh3ix",
+    logLevel: LogLevel.None
+);
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-
   dynamic langValue = const Locale('en', 'US');
   if (box.read('lang') != null) {
     langValue = Locale(box.read('lang'), box.read('langKey'));
   } else {
     langValue = const Locale('en', 'US');
   }
-  runApp(VisitorPass(langValue: langValue));
+
+  runApp(ClarityWidget(
+    app: VisitorPass(langValue: langValue),
+    clarityConfig: config,
+  ));
+  // runApp(VisitorPass(langValue: langValue));
 }
 
 class VisitorPass extends StatelessWidget {
@@ -33,7 +42,7 @@ class VisitorPass extends StatelessWidget {
   Widget build(BuildContext context) {
     dynamic width = MediaQuery.of(context).size.width;
 
-    if (width <= 515) {
+    if (width <= 600) {
       box.write('isMobile', true);
     } else {
       box.write('isMobile', false);

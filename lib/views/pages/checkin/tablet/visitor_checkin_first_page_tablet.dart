@@ -159,7 +159,7 @@ class VisitorCheckInFirstPageTablet extends StatelessWidget {
                                                 items: (filter, loadProps) =>
                                                     controller.employeeList.map(
                                                         (EmployeeData value) {
-                                                  return value.name.toString();
+                                                  return "${value.name.toString()} - ${value.deptName.toString()}";
                                                 }).toList(),
                                                 onChanged: (employeeName) {
                                                   EmployeeData employee =
@@ -202,31 +202,90 @@ class VisitorCheckInFirstPageTablet extends StatelessWidget {
                             const SizedBox(
                               height: 42,
                             ),
-                            SizedBox(
-                              height: 60,
-                              width: double.infinity,
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  SizedBox(
-                                    width: 140.w,
+                            // SizedBox(
+                            //   height: 60,
+                            //   width: double.infinity,
+                            //   child: Row(
+                            //     mainAxisAlignment:
+                            //         MainAxisAlignment.spaceBetween,
+                            //     children: [
+                            //       SizedBox(
+                            //         width: 140.w,
+                            //         height: 60.h,
+                            //         child: ElevatedButton(
+                            //           onPressed: () {
+                            //             validate = false;
+                            //             Get.back();
+                            //             (context as Element).markNeedsBuild();
+                            //           },
+                            //           style: ElevatedButton.styleFrom(
+                            //               foregroundColor:
+                            //                   AppColor.primaryColor,
+                            //               backgroundColor: AppColor.borderColor,
+                            //               elevation: 0,
+                            //               shape: RoundedRectangleBorder(
+                            //                 borderRadius:
+                            //                     BorderRadius.circular(10),
+                            //               )),
+                            //           child: Text(
+                            //             'cancel'.tr,
+                            //             style: const TextStyle(
+                            //               fontSize: 16,
+                            //               fontWeight: FontWeight.w600,
+                            //             ),
+                            //           ),
+                            //         ),
+                            //       ),
+                            //       const SizedBox(
+                            //         width: 50,
+                            //       ),
+                            //       SizedBox(
+                            //         width: 140.w,
+                            //         height: 60.h,
+                            //         child: ElevatedButton(
+                            //           onPressed: () async {
+                            //             validateAndSave(context);
+                            //             (context as Element).markNeedsBuild();
+                            //           },
+                            //           style: ElevatedButton.styleFrom(
+                            //               foregroundColor: Colors.white,
+                            //               backgroundColor:
+                            //                   AppColor.primaryColor,
+                            //               elevation: 0,
+                            //               shape: RoundedRectangleBorder(
+                            //                 borderRadius:
+                            //                     BorderRadius.circular(10),
+                            //               )),
+                            //           child: Text(
+                            //             'continue'.tr,
+                            //             style: const TextStyle(
+                            //               fontSize: 16,
+                            //               fontWeight: FontWeight.w600,
+                            //             ),
+                            //           ),
+                            //         ),
+                            //       ),
+                            //     ],
+                            //   ),
+                            // ),
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: SizedBox(
                                     height: 60.h,
                                     child: ElevatedButton(
                                       onPressed: () {
                                         validate = false;
                                         Get.back();
-                                        (context as Element).markNeedsBuild();
                                       },
                                       style: ElevatedButton.styleFrom(
-                                          foregroundColor:
-                                              AppColor.primaryColor,
-                                          backgroundColor: AppColor.borderColor,
-                                          elevation: 0,
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                          )),
+                                        foregroundColor: AppColor.primaryColor,
+                                        backgroundColor: AppColor.borderColor,
+                                        elevation: 0,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(10),
+                                        ),
+                                      ),
                                       child: Text(
                                         'cancel'.tr,
                                         style: const TextStyle(
@@ -236,26 +295,23 @@ class VisitorCheckInFirstPageTablet extends StatelessWidget {
                                       ),
                                     ),
                                   ),
-                                  const SizedBox(
-                                    width: 50,
-                                  ),
-                                  SizedBox(
-                                    width: 140.w,
+                                ),
+                                const SizedBox(width: 20), // smaller spacing
+                                Expanded(
+                                  child: SizedBox(
                                     height: 60.h,
                                     child: ElevatedButton(
                                       onPressed: () async {
                                         validateAndSave(context);
-                                        (context as Element).markNeedsBuild();
                                       },
                                       style: ElevatedButton.styleFrom(
-                                          foregroundColor: Colors.white,
-                                          backgroundColor:
-                                              AppColor.primaryColor,
-                                          elevation: 0,
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                          )),
+                                        foregroundColor: Colors.white,
+                                        backgroundColor: AppColor.primaryColor,
+                                        elevation: 0,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(10),
+                                        ),
+                                      ),
                                       child: Text(
                                         'continue'.tr,
                                         style: const TextStyle(
@@ -265,9 +321,11 @@ class VisitorCheckInFirstPageTablet extends StatelessWidget {
                                       ),
                                     ),
                                   ),
-                                ],
-                              ),
-                            ),
+                                ),
+                              ],
+                            )
+
+
                           ],
                         ),
                       ),

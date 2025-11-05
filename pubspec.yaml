@@ -2,7 +2,7 @@ name: visitor_pass
 description: A new Flutter project.
 
 publish_to: "none"
-version: 1.0.0+1
+version: 1.0.1+2
 
 environment:
   sdk: ">=3.8.1 <4.0.0"
@@ -33,6 +33,7 @@ dependencies:
   flutter_native_splash: ^2.4.6
   archive: 4.0.7
   firebase_core: ^4.1.0
+  clarity_flutter: ^1.4.2
 
 dev_dependencies:
   flutter_test:
