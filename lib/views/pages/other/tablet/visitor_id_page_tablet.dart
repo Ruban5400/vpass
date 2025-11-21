@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:printing/printing.dart';
 import 'package:pdf/widgets.dart' as pw;
+import 'package:visitor_pass/views/pages/other/tablet/home_page_tablet.dart';
 import '../../../../constants/constants.dart';
 import 'package:pdf/pdf.dart';
 
@@ -226,9 +227,18 @@ class _VisitorIdPageTabletState extends State<VisitorIdPageTablet> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              SizedBox(
-                                width: 320,
-                                height: 48,
+                              Expanded(
+                                child: ElevatedButton(
+                                  onPressed: () => Get.off(() => HomePageTablet()),
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: Colors.white,
+                                    foregroundColor: AppColor.primaryColor,
+                                    side: const BorderSide(color: AppColor.borderColor),
+                                  ),
+                                  child: Text('home'.tr),
+                                ),
+                              ),
+                              Expanded(
                                 child: ElevatedButton(
                                   onPressed: _printScreen,
                                   style: ElevatedButton.styleFrom(

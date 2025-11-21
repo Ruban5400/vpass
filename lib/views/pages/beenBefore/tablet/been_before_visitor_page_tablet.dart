@@ -379,7 +379,7 @@ class _BeenBeforeVisitorDetailsPageTabletState
   void validateAndSave(context) {
     final FormState? form = _formKey.currentState;
     if (form!.validate()) {
-      Map<String, dynamic> visitorData = {
+      Map<String, String> visitorData = {
         'first_name': findVisitorController.firstNameController.text,
         'last_name': findVisitorController.lastNameController.text,
         'email': findVisitorController.emailController.text,

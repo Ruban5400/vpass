@@ -17,9 +17,9 @@ final config = ClarityConfig(
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  // await Firebase.initializeApp(
+  //   options: DefaultFirebaseOptions.currentPlatform,
+  // );
   dynamic langValue = const Locale('en', 'US');
   if (box.read('lang') != null) {
     langValue = Locale(box.read('lang'), box.read('langKey'));
