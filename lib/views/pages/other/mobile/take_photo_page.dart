@@ -28,7 +28,7 @@ class _TakePhotoPageState extends State<TakePhotoPage> {
   Future getImage(ImageSource source) async {
     try {
       final image = await ImagePicker().pickImage(
-          source: source, imageQuality: 70, maxHeight: 600, maxWidth: 600);
+          source: source, imageQuality: 70, maxHeight: 600, maxWidth: 600, preferredCameraDevice: CameraDevice.front,);
       if (image == null) return;
       // final imageTemporary = File(image.path);
       final imagePermanent = await saveImage(image.path);

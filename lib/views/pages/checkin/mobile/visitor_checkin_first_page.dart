@@ -163,8 +163,6 @@ class VisitorCheckInFirstPage extends StatelessWidget {
                                                   return "${value.name.toString()} - ${value.deptName.toString()}";
                                                 }).toList(),
                                                 onChanged: (employeeName) {
-                                                print('5400 -=-=- $employeeName');
-
                                                 // EmployeeData employee =
                                                 //     controller
                                                 //         .employeeList

@@ -28,7 +28,12 @@ class _TakePhotoPageState extends State<TakePhotoPageTablet> {
   Future getImage(ImageSource source) async {
     try {
       final image = await ImagePicker().pickImage(
-          source: source, imageQuality: 70, maxHeight: 600, maxWidth: 600);
+        source: source,
+        imageQuality: 70,
+        maxHeight: 600,
+        maxWidth: 600,
+        preferredCameraDevice: CameraDevice.front,
+      );
       if (image == null) return;
       // final imageTemporary = File(image.path);
       final imagePermanent = await saveImage(image.path);
@@ -71,92 +76,94 @@ class _TakePhotoPageState extends State<TakePhotoPageTablet> {
         ),
       ),
       body: GetBuilder<CheckInController>(
-          init: CheckInController(),
-          builder: (controller) {
-            return Stack(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(20, 40, 20, 20),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      image != null
-                          ? Column(
-                              children: [
-                                ClipOval(
-                                  child: Image.file(
-                                    image!,
-                                    width: 320.w,
-                                    height: 320.h,
-                                    fit: BoxFit.cover,
-                                  ),
+        init: CheckInController(),
+        builder: (controller) {
+          return Stack(
+            children: [
+              Padding(
+                padding: const EdgeInsets.fromLTRB(20, 40, 20, 20),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    image != null
+                        ? Column(
+                            children: [
+                              ClipOval(
+                                child: Image.file(
+                                  image!,
+                                  width: 320.w,
+                                  height: 320.h,
+                                  fit: BoxFit.cover,
                                 ),
-                                const SizedBox(
-                                  height: 30,
-                                ),
-                                SizedBox(
-                                  height: 48.h,
-                                  width: 160.w,
-                                  child: TextButton(
-                                    style: TextButton.styleFrom(
-                                      backgroundColor: AppColor.textButtonColor,
-                                    ),
-                                    onPressed: () {
-                                      getImage(ImageSource.camera);
-                                    },
-                                    child: Text(
-                                      'take_again'.tr,
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w600,
-                                        color: AppColor.primaryColor,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            )
-                          : ClipOval(
-                              child: Container(
-                                width: 320.w,
-                                height: 320.h,
-                                color: AppColor.borderColor,
                               ),
+                              const SizedBox(height: 30),
+                              SizedBox(
+                                height: 48.h,
+                                width: 160.w,
+                                child: TextButton(
+                                  style: TextButton.styleFrom(
+                                    backgroundColor: AppColor.textButtonColor,
+                                  ),
+                                  onPressed: () {
+                                    getImage(ImageSource.camera);
+                                  },
+                                  child: Text(
+                                    'take_again'.tr,
+                                    style: const TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w600,
+                                      color: AppColor.primaryColor,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          )
+                        : ClipOval(
+                            child: Container(
+                              width: 320.w,
+                              height: 320.h,
+                              color: AppColor.borderColor,
                             ),
-                      image != null
-                          ? CustomButton(
-                              title: 'continue'.tr,
-                              onPressed: () {
-                                checkInController.visitorPost(
-                                    context, image!.path, widget.visitorData);
-                              },
-                              primaryColor: AppColor.primaryColor,
-                              onPrimaryColor: Colors.white)
-                          : CustomButton(
-                              title: 'take_your_picture'.tr,
-                              onPressed: () {
-                                getImage(ImageSource.camera);
-                              },
-                              primaryColor: AppColor.primaryColor,
-                              onPrimaryColor: Colors.white),
-                    ],
-                  ),
-                ),
-                checkInController.loader
-                    ? Positioned(
-                        child: Container(
-                          height: MediaQuery.of(context).size.height,
-                          width: MediaQuery.of(context).size.width,
-                          color: Colors.white60,
-                          child: const Center(
-                            child: Loader(),
                           ),
-                        ),
-                      )
-                    : const SizedBox.shrink(),
-              ],
-            );
-          }),
+                    image != null
+                        ? CustomButton(
+                            title: 'continue'.tr,
+                            onPressed: () {
+                              checkInController.visitorPost(
+                                context,
+                                image!.path,
+                                widget.visitorData,
+                              );
+                            },
+                            primaryColor: AppColor.primaryColor,
+                            onPrimaryColor: Colors.white,
+                          )
+                        : CustomButton(
+                            title: 'take_your_picture'.tr,
+                            onPressed: () {
+                              getImage(ImageSource.camera);
+                            },
+                            primaryColor: AppColor.primaryColor,
+                            onPrimaryColor: Colors.white,
+                          ),
+                  ],
+                ),
+              ),
+              checkInController.loader
+                  ? Positioned(
+                      child: Container(
+                        height: MediaQuery.of(context).size.height,
+                        width: MediaQuery.of(context).size.width,
+                        color: Colors.white60,
+                        child: const Center(child: Loader()),
+                      ),
+                    )
+                  : const SizedBox.shrink(),
+            ],
+          );
+        },
+      ),
     );
   }
 }
