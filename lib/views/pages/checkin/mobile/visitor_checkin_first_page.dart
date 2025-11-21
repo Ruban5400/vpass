@@ -1,4 +1,6 @@
 // ignore_for_file: must_be_immutable
+import 'dart:math';
+
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -161,21 +163,30 @@ class VisitorCheckInFirstPage extends StatelessWidget {
                                                   return "${value.name.toString()} - ${value.deptName.toString()}";
                                                 }).toList(),
                                                 onChanged: (employeeName) {
-                                                  EmployeeData employee =
-                                                      controller
-                                                          .employeeList
-                                                          .where((data) =>
-                                                              data.name ==
-                                                              employeeName)
-                                                          .toList()
-                                                          .first;
-                                                  selectedEmployeeID =
-                                                      employee.id;
-                                                  checkInController.employeeID =
-                                                      employee.id!.toString();
-                                                  (context as Element)
-                                                      .markNeedsBuild();
-                                                },
+                                                print('5400 -=-=- $employeeName');
+
+                                                // EmployeeData employee =
+                                                //     controller
+                                                //         .employeeList
+                                                //         .where((data) =>
+                                                //             data.name ==
+                                                //             employeeName)
+                                                //         .toList()
+                                                //         .first;
+                                                EmployeeData employee = controller.employeeList.firstWhere((data) {
+                                                  final display = '${data.name?.trim() ?? ''} - ${data.deptName?.trim() ?? ''}';
+
+                                                  return display.toLowerCase() == (employeeName?.trim().toLowerCase() ?? '');
+                                                });
+
+                                                selectedEmployeeID =
+                                                    employee.id;
+                                                checkInController.employeeID =
+                                                    employee.id!.toString();
+                                                (context as Element)
+                                                    .markNeedsBuild();
+                                                print('0045 -=-=- $selectedEmployeeID');
+                                              },
                                                 validator: (String?
                                                     selectedEmployeeID) {
                                                   if (selectedEmployeeID ==

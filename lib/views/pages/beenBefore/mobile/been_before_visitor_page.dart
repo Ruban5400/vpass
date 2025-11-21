@@ -354,10 +354,12 @@ class _BeenBeforeVisitorDetailsPageState
         'national_identification_no': findVisitorController.nidController.text,
         'employee_id': findVisitorController.employeeID.toString(),
         'gender': findVisitorController.genderID,
-        'visitor_old': '1'
+        'visitor_old': '1',
+        'accept_tc' : '1'
       };
 
       if (box.read('photoCaptureEnable') == "1") {
+        print('visitorData -=-=-> $visitorData');
         checkInController.visitorValidatePost(context, '', visitorData);
         // Get.off(() => TakePhotoPage(visitorData: visitorData));
         validate = true;

@@ -51,6 +51,7 @@ class AppointmentController extends GetxController {
     update();
     var responseData = await Appointment().findAppointment(id);
     if (responseData == null) {
+
       loader = false;
       update();
       Get.rawSnackbar(
@@ -92,6 +93,7 @@ class AppointmentController extends GetxController {
           ? AppointmentVisitorFirstPage()
           : AppointmentVisitorFirstPage());
     } else if (responseData.status == 404) {
+      print('5400 -=-=-= ');
       Get.rawSnackbar(
         snackPosition: SnackPosition.TOP,
         title: 'Find Visitor',

@@ -162,14 +162,19 @@ class VisitorCheckInFirstPageTablet extends StatelessWidget {
                                                   return "${value.name.toString()} - ${value.deptName.toString()}";
                                                 }).toList(),
                                                 onChanged: (employeeName) {
-                                                  EmployeeData employee =
-                                                      controller
-                                                          .employeeList
-                                                          .where((data) =>
-                                                              data.name ==
-                                                              employeeName)
-                                                          .toList()
-                                                          .first;
+                                                  // EmployeeData employee =
+                                                  //     controller
+                                                  //         .employeeList
+                                                  //         .where((data) =>
+                                                  //             data.name ==
+                                                  //             employeeName)
+                                                  //         .toList()
+                                                  //         .first;
+                                                  EmployeeData employee = controller.employeeList.firstWhere((data) {
+                                                    final display = '${data.name?.trim() ?? ''} - ${data.deptName?.trim() ?? ''}';
+
+                                                    return display.toLowerCase() == (employeeName?.trim().toLowerCase() ?? '');
+                                                  });
                                                   selectedEmployeeID =
                                                       employee.id;
                                                   checkInController.employeeID =

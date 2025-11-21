@@ -379,7 +379,7 @@ class _BeenBeforeVisitorDetailsPageTabletState
   void validateAndSave(context) {
     final FormState? form = _formKey.currentState;
     if (form!.validate()) {
-      Map<String, String> visitorData = {
+      Map<String, dynamic> visitorData = {
         'first_name': findVisitorController.firstNameController.text,
         'last_name': findVisitorController.lastNameController.text,
         'email': findVisitorController.emailController.text,
@@ -392,7 +392,8 @@ class _BeenBeforeVisitorDetailsPageTabletState
         'national_identification_no': findVisitorController.nidController.text,
         'employee_id': findVisitorController.employeeID.toString(),
         'gender': findVisitorController.genderID,
-        'visitor_old': '1'
+        'visitor_old': '1',
+        'accept_tc' : '1'
       };
 
       if (box.read('photoCaptureEnable') == "1") {
