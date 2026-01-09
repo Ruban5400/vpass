@@ -123,8 +123,8 @@ class _AppointmentVisitorPageState extends State<AppointmentVisitorPage> {
                                 appointmentController.lastNameController,
                             validatorTxt: 'enter_last_name'.tr,
                           ),
-                          FormTitle(title: 'email'.tr),
-                          CustomEmailField(
+                          NonRequiredFormTitle(title: 'email'.tr),
+                          NonRequiredCustomFormField(
                             controller: appointmentController.emailController,
                             validatorTxt: 'enter_email'.tr,
                           ),
@@ -234,12 +234,12 @@ class _AppointmentVisitorPageState extends State<AppointmentVisitorPage> {
                             controller: appointmentController.companyController,
                             validatorTxt: 'enter_company_name'.tr,
                           ),
-                          FormTitle(title: 'nid_no'.tr),
-                          CustomFormFieldNum(
-                            readOnly: true,
-                            controller: appointmentController.nidController,
-                            validatorTxt: 'enter_nid'.tr,
-                          ),
+                          // FormTitle(title: 'nid_no'.tr),
+                          // CustomFormFieldNum(
+                          //   readOnly: true,
+                          //   controller: appointmentController.nidController,
+                          //   validatorTxt: 'enter_nid'.tr,
+                          // ),
                           NonRequiredFormTitle(title: 'address'.tr),
                           CustomLargeForm(
                             controller: appointmentController.addressController,
@@ -349,7 +349,7 @@ class _AppointmentVisitorPageState extends State<AppointmentVisitorPage> {
         'company': appointmentController.companyController.text,
         'address': appointmentController.addressController.text,
         'purpose': appointmentController.purposeController.text,
-        'national_identification_no': appointmentController.nidController.text,
+        // 'national_identification_no': appointmentController.nidController.text,
         'employee_id': appointmentController.employeeID.toString(),
         'gender': appointmentController.genderID,
         'visitor_old': '1'

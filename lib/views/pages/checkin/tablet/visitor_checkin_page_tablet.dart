@@ -123,235 +123,308 @@ class _VisitorCheckInPageTabletState extends State<VisitorCheckInPageTablet> {
                             // 3. Use fixed padding for margin control
                             padding: const EdgeInsets.only(
                                 left: 30, right: 30, top: 30),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                            child: Column(
                               children: [
-                                Expanded(
-                                  flex: 1,
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      FormTitle(title: 'first_name'.tr),
-                                      CustomFormField(
-                                        readOnly: false,
-                                        controller:
-                                        checkInController.firstNameController,
-                                        validatorTxt: 'enter_first_name'.tr,
-                                      ),
-                                      FormTitle(title: 'email'.tr),
-                                      CustomEmailField(
-                                        controller:
-                                        checkInController.emailController,
-                                        validatorTxt: 'enter_email'.tr,
-                                      ),
-                                      FormTitle(title: 'select_gender'.tr),
-                                      dropdownItems.isEmpty
-                                          ? Container()
-                                          : Padding(
-                                        padding: const EdgeInsets.symmetric( // Fixed padding
-                                            vertical: 8),
-                                        child: Container(
-                                          height: 48, // Fixed height
-                                          width: double.infinity,
-                                          decoration: BoxDecoration(
-                                            border: Border.all(
-                                              width: 1, // Fixed width
-                                              color: AppColor.borderColor,
-                                            ),
-                                            borderRadius:
-                                            BorderRadius.circular(10), // Fixed radius
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Expanded(
+                                      flex: 1,
+                                      child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          FormTitle(title: 'first_name'.tr),
+                                          CustomFormField(
+                                            readOnly: false,
+                                            controller:
+                                            checkInController.firstNameController,
+                                            validatorTxt: 'enter_first_name'.tr,
                                           ),
-                                          child: ButtonTheme(
-                                            alignedDropdown: true,
-                                            child:
-                                            DropdownButtonHideUnderline(
-                                              child: DropdownButton(
-                                                  borderRadius:
-                                                  const BorderRadius.all( // Fixed radius
-                                                      Radius.circular(
-                                                          10)),
-                                                  isExpanded: true,
-                                                  // Use screenHeight
-                                                  menuMaxHeight: screenHeight / 3,
-                                                  items: dropdownItems,
-                                                  value: checkInController
-                                                      .genderID,
-                                                  onChanged:
-                                                      (String? newValue) {
-                                                    checkInController
-                                                        .genderID =
-                                                    newValue!;
-                                                    (context as Element)
-                                                        .markNeedsBuild();
-                                                  }),
-                                            ),
+                                          NonRequiredFormTitle(title: 'email'.tr),
+                                          NonRequiredCustomFormField(
+                                            controller:
+                                            checkInController.emailController,
+                                            validatorTxt: 'enter_email'.tr,
                                           ),
-                                        ),
-                                      ),
-                                      FormTitle(title: 'enter_nid'.tr),
-                                      CustomFormField(
-                                        readOnly: false,
-                                        controller:
-                                        checkInController.nidController,
-                                        validatorTxt: 'nid_no'.tr,
-                                      ),
-                                      // Removed employee dropdown as it was commented out/redundant
-
-                                      const SizedBox( // Fixed height
-                                        height: 87,
-                                      ),
-                                      SizedBox(
-                                        width: 180, // Fixed width
-                                        height: 50, // Fixed height
-                                        child: ElevatedButton(
-                                          onPressed: () {
-                                            validate = false;
-                                            Get.back();
-                                          },
-                                          style: ElevatedButton.styleFrom(
-                                              foregroundColor:
-                                              AppColor.primaryColor,
-                                              backgroundColor:
-                                              AppColor.borderColor,
-                                              elevation: 0,
-                                              shape: RoundedRectangleBorder(
+                                          // CustomEmailField(
+                                          //   controller:
+                                          //   checkInController.emailController,
+                                          //   validatorTxt: 'enter_email'.tr,
+                                          // ),
+                                          FormTitle(title: 'select_gender'.tr),
+                                          dropdownItems.isEmpty
+                                              ? Container()
+                                              : Padding(
+                                            padding: const EdgeInsets.symmetric( // Fixed padding
+                                                vertical: 8),
+                                            child: Container(
+                                              height: 48, // Fixed height
+                                              width: double.infinity,
+                                              decoration: BoxDecoration(
+                                                border: Border.all(
+                                                  width: 1, // Fixed width
+                                                  color: AppColor.borderColor,
+                                                ),
                                                 borderRadius:
-                                                BorderRadius.circular(50), // Fixed radius
-                                              )),
-                                          child: Text( // Fixed font size
-                                            'cancel'.tr,
-                                            style: TextStyle(
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.w600,
+                                                BorderRadius.circular(10), // Fixed radius
+                                              ),
+                                              child: ButtonTheme(
+                                                alignedDropdown: true,
+                                                child:
+                                                DropdownButtonHideUnderline(
+                                                  child: DropdownButton(
+                                                      borderRadius:
+                                                      const BorderRadius.all( // Fixed radius
+                                                          Radius.circular(
+                                                              10)),
+                                                      isExpanded: true,
+                                                      // Use screenHeight
+                                                      menuMaxHeight: screenHeight / 3,
+                                                      items: dropdownItems,
+                                                      value: checkInController
+                                                          .genderID,
+                                                      onChanged:
+                                                          (String? newValue) {
+                                                        checkInController
+                                                            .genderID =
+                                                        newValue!;
+                                                        (context as Element)
+                                                            .markNeedsBuild();
+                                                      }),
+                                                ),
+                                              ),
                                             ),
                                           ),
-                                        ),
+                                          // FormTitle(title: 'enter_nid'.tr),
+                                          // CustomFormField(
+                                          //   readOnly: false,
+                                          //   controller:
+                                          //   checkInController.nidController,
+                                          //   validatorTxt: 'nid_no'.tr,
+                                          // ),
+                                          // Removed employee dropdown as it was commented out/redundant
+                                          NonRequiredFormTitle(
+                                              title: 'your_company'.tr),
+                                          NonRequiredCustomFormField(
+                                            controller:
+                                            checkInController.companyController,
+                                            validatorTxt: 'enter_company_name'.tr,
+                                          ),
+                                          // const SizedBox( // Fixed height
+                                          //   height: 87,
+                                          // ),
+                                          // SizedBox(
+                                          //   width: 180, // Fixed width
+                                          //   height: 50, // Fixed height
+                                          //   child: ElevatedButton(
+                                          //     onPressed: () {
+                                          //       validate = false;
+                                          //       Get.back();
+                                          //     },
+                                          //     style: ElevatedButton.styleFrom(
+                                          //         foregroundColor:
+                                          //         AppColor.primaryColor,
+                                          //         backgroundColor:
+                                          //         AppColor.borderColor,
+                                          //         elevation: 0,
+                                          //         shape: RoundedRectangleBorder(
+                                          //           borderRadius:
+                                          //           BorderRadius.circular(50), // Fixed radius
+                                          //         )),
+                                          //     child: Text( // Fixed font size
+                                          //       'cancel'.tr,
+                                          //       style: TextStyle(
+                                          //         fontSize: 16,
+                                          //         fontWeight: FontWeight.w600,
+                                          //       ),
+                                          //     ),
+                                          //   ),
+                                          // ),
+                                        ],
                                       ),
-                                    ],
-                                  ),
-                                ),
-                                const SizedBox(
-                                  width: 30, // Fixed width between columns
-                                ),
-                                Expanded(
-                                  flex: 1,
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start, // Align to start for consistency
-                                    children: [
-                                      FormTitle(title: 'last_name'.tr),
-                                      CustomFormField(
-                                        readOnly: false,
-                                        controller:
-                                        checkInController.lastNameController,
-                                        validatorTxt: 'enter_last_name'.tr,
-                                      ),
-                                      FormNoteTitle(title: 'phone'.tr),
+                                    ),
+                                    const SizedBox(
+                                      width: 30, // Fixed width between columns
+                                    ),
+                                    Expanded(
+                                      flex: 1,
+                                      child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start, // Align to start for consistency
+                                        children: [
+                                          FormTitle(title: 'last_name'.tr),
+                                          CustomFormField(
+                                            readOnly: false,
+                                            controller:
+                                            checkInController.lastNameController,
+                                            validatorTxt: 'enter_last_name'.tr,
+                                          ),
+                                          FormNoteTitle(title: 'phone'.tr),
 
-                                      IntlPhoneField(
-                                        controller:
-                                        checkInController.phoneController,
-                                        keyboardType: TextInputType.number,
-                                        showDropdownIcon: false,
-                                        disableLengthCheck: true,
-                                        decoration: InputDecoration(
-                                          contentPadding:
-                                          const EdgeInsets.symmetric(
-                                              vertical: 10.0,
-                                              horizontal: 10.0),
-                                          errorBorder: OutlineInputBorder(
-                                            borderRadius:
-                                            BorderRadius.circular(5.0),
-                                            borderSide: const BorderSide(
-                                              width: 1,
-                                              color: AppColor.redColor,
-                                            ),
-                                          ),
-                                          focusedErrorBorder: OutlineInputBorder(
-                                            borderRadius:
-                                            BorderRadius.circular(5.0),
-                                            borderSide: const BorderSide(
-                                              width: 1,
-                                              color: AppColor.redColor,
-                                            ),
-                                          ),
-                                          focusedBorder: const OutlineInputBorder(
-                                            borderRadius: BorderRadius.all( // Fixed border radius
-                                                Radius.circular(5)),
-                                            borderSide: BorderSide(
-                                                width: 1,
-                                                color: AppColor.primaryColor),
-                                          ),
-                                          enabledBorder: const OutlineInputBorder(
-                                            borderRadius: BorderRadius.all( // Fixed border radius
-                                              Radius.circular(5),
-                                            ),
-                                            borderSide: BorderSide(
-                                                width: 1,
-                                                color: AppColor.borderColor),
-                                          ),
-                                        ),
-                                        initialCountryCode:
-                                        countryCodeName.toUpperCase(),
-                                        onChanged: (phone) {
-                                          setState(() {
-                                            countryCodeName = phone.countryISOCode
-                                                .toLowerCase();
-                                            countryCode = phone.countryCode
-                                                .replaceAll('+', '');
-                                          });
-                                        },
-                                        onCountryChanged: (value) {
-                                          countryCode = value.dialCode;
-                                          countryCodeName =
-                                              value.code.toLowerCase();
-                                        },
-                                      ),
-                                      NonRequiredFormTitle(
-                                          title: 'your_company'.tr),
-                                      NonRequiredCustomFormField(
-                                        controller:
-                                        checkInController.companyController,
-                                        validatorTxt: 'enter_company_name'.tr,
-                                      ),
-                                      NonRequiredFormTitle(title: 'address'.tr),
-                                      CustomFormNoValidatorField(
-                                        controller:
-                                        checkInController.addressController,
-                                        validatorTxt: 'enter_address'.tr,
-                                      ),
-
-                                      const SizedBox( // Fixed height
-                                        height: 55,
-                                      ),
-                                      SizedBox(
-                                        width: 180, // Fixed width
-                                        height: 50, // Fixed height
-                                        child: ElevatedButton(
-                                          onPressed: () async {
-                                            validateAndSave(context);
-                                          },
-                                          style: ElevatedButton.styleFrom(
-                                              foregroundColor: Colors.white,
-                                              backgroundColor:
-                                              AppColor.primaryColor,
-                                              elevation: 0,
-                                              shape: RoundedRectangleBorder(
+                                          IntlPhoneField(
+                                            controller:
+                                            checkInController.phoneController,
+                                            keyboardType: TextInputType.number,
+                                            showDropdownIcon: false,
+                                            disableLengthCheck: true,
+                                            decoration: InputDecoration(
+                                              contentPadding:
+                                              const EdgeInsets.symmetric(
+                                                  vertical: 10.0,
+                                                  horizontal: 10.0),
+                                              errorBorder: OutlineInputBorder(
                                                 borderRadius:
-                                                BorderRadius.circular(50),
-                                              )),
-                                          child: Text( // Fixed font size
-                                            'continue'.tr,
-                                            style: TextStyle(
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.w600,
+                                                BorderRadius.circular(5.0),
+                                                borderSide: const BorderSide(
+                                                  width: 1,
+                                                  color: AppColor.redColor,
+                                                ),
+                                              ),
+                                              focusedErrorBorder: OutlineInputBorder(
+                                                borderRadius:
+                                                BorderRadius.circular(5.0),
+                                                borderSide: const BorderSide(
+                                                  width: 1,
+                                                  color: AppColor.redColor,
+                                                ),
+                                              ),
+                                              focusedBorder: const OutlineInputBorder(
+                                                borderRadius: BorderRadius.all( // Fixed border radius
+                                                    Radius.circular(5)),
+                                                borderSide: BorderSide(
+                                                    width: 1,
+                                                    color: AppColor.primaryColor),
+                                              ),
+                                              enabledBorder: const OutlineInputBorder(
+                                                borderRadius: BorderRadius.all( // Fixed border radius
+                                                  Radius.circular(5),
+                                                ),
+                                                borderSide: BorderSide(
+                                                    width: 1,
+                                                    color: AppColor.borderColor),
+                                              ),
                                             ),
+                                            initialCountryCode:
+                                            countryCodeName.toUpperCase(),
+                                            onChanged: (phone) {
+                                              setState(() {
+                                                countryCodeName = phone.countryISOCode
+                                                    .toLowerCase();
+                                                countryCode = phone.countryCode
+                                                    .replaceAll('+', '');
+                                              });
+                                            },
+                                            onCountryChanged: (value) {
+                                              countryCode = value.dialCode;
+                                              countryCodeName =
+                                                  value.code.toLowerCase();
+                                            },
+                                          ),
+                                          // NonRequiredFormTitle(
+                                          //     title: 'your_company'.tr),
+                                          // NonRequiredCustomFormField(
+                                          //   controller:
+                                          //   checkInController.companyController,
+                                          //   validatorTxt: 'enter_company_name'.tr,
+                                          // ),
+                                          NonRequiredFormTitle(title: 'address'.tr),
+                                          CustomFormNoValidatorField(
+                                            controller:
+                                            checkInController.addressController,
+                                            validatorTxt: 'enter_address'.tr,
+                                          ),
+
+                                          // const SizedBox( // Fixed height
+                                          //   height: 55,
+                                          // ),
+                                          // SizedBox(
+                                          //   width: 180, // Fixed width
+                                          //   height: 50, // Fixed height
+                                          //   child: ElevatedButton(
+                                          //     onPressed: () async {
+                                          //       validateAndSave(context);
+                                          //     },
+                                          //     style: ElevatedButton.styleFrom(
+                                          //         foregroundColor: Colors.white,
+                                          //         backgroundColor:
+                                          //         AppColor.primaryColor,
+                                          //         elevation: 0,
+                                          //         shape: RoundedRectangleBorder(
+                                          //           borderRadius:
+                                          //           BorderRadius.circular(50),
+                                          //         )),
+                                          //     child: Text( // Fixed font size
+                                          //       'continue'.tr,
+                                          //       style: TextStyle(
+                                          //         fontSize: 16,
+                                          //         fontWeight: FontWeight.w600,
+                                          //       ),
+                                          //     ),
+                                          //   ),
+                                          // ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(height: 40),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                  children: [
+                                    SizedBox(
+                                      width: 180, // Fixed width
+                                      height: 50, // Fixed height
+                                      child: ElevatedButton(
+                                        onPressed: () {
+                                          validate = false;
+                                          Get.back();
+                                        },
+                                        style: ElevatedButton.styleFrom(
+                                            foregroundColor:
+                                            AppColor.primaryColor,
+                                            backgroundColor:
+                                            AppColor.borderColor,
+                                            elevation: 0,
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                              BorderRadius.circular(50), // Fixed radius
+                                            )),
+                                        child: Text( // Fixed font size
+                                          'cancel'.tr,
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w600,
                                           ),
                                         ),
                                       ),
-                                    ],
-                                  ),
-                                ),
+                                    ),
+                                    SizedBox(
+                                      width: 180, // Fixed width
+                                      height: 50, // Fixed height
+                                      child: ElevatedButton(
+                                        onPressed: () async {
+                                          validateAndSave(context);
+                                        },
+                                        style: ElevatedButton.styleFrom(
+                                            foregroundColor: Colors.white,
+                                            backgroundColor:
+                                            AppColor.primaryColor,
+                                            elevation: 0,
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                              BorderRadius.circular(50),
+                                            )),
+                                        child: Text( // Fixed font size
+                                          'continue'.tr,
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                )
                               ],
                             ),
                           ),
@@ -390,7 +463,7 @@ class _VisitorCheckInPageTabletState extends State<VisitorCheckInPageTablet> {
         'company': checkInController.companyController.text,
         'address': checkInController.addressController.text,
         'purpose': checkInController.purposeController.text,
-        'national_identification_no': checkInController.nidController.text,
+        // 'national_identification_no': checkInController.nidController.text,
         'employee_id': checkInController.employeeID.toString(),
         'gender': checkInController.genderID,
         'visitor_old': '0'

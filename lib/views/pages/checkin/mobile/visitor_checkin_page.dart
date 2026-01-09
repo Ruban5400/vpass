@@ -113,8 +113,8 @@ class _VisitorCheckInPageState extends State<VisitorCheckInPage> {
                               controller: checkInController.lastNameController,
                               validatorTxt: 'enter_last_name'.tr,
                             ),
-                            FormTitle(title: 'email'.tr),
-                            CustomEmailField(
+                            NonRequiredFormTitle(title: 'email'.tr),
+                            NonRequiredCustomFormField(
                               controller: checkInController.emailController,
                               validatorTxt: 'enter_email'.tr,
                             ),
@@ -218,12 +218,12 @@ class _VisitorCheckInPageState extends State<VisitorCheckInPage> {
                               controller: checkInController.companyController,
                               validatorTxt: 'enter_company_name'.tr,
                             ),
-                            FormTitle(title: 'enter_nid'.tr),
-                            CustomFormField(
-                              readOnly: false,
-                              controller: checkInController.nidController,
-                              validatorTxt: 'nid_no'.tr,
-                            ),
+                            // FormTitle(title: 'enter_nid'.tr),
+                            // CustomFormField(
+                            //   readOnly: false,
+                            //   controller: checkInController.nidController,
+                            //   validatorTxt: 'nid_no'.tr,
+                            // ),
                             NonRequiredFormTitle(title: 'address'.tr),
                             CustomFormNoValidatorField(
                               controller: checkInController.addressController,
@@ -335,7 +335,7 @@ class _VisitorCheckInPageState extends State<VisitorCheckInPage> {
         'company': checkInController.companyController.text,
         'address': checkInController.addressController.text,
         'purpose': checkInController.purposeController.text,
-        'national_identification_no': checkInController.nidController.text,
+        // 'national_identification_no': checkInController.nidController.text,
         'employee_id': checkInController.employeeID.toString(),
         'gender': checkInController.genderID,
         'visitor_old': '0'

@@ -1,6 +1,6 @@
 // ignore_for_file: must_be_immutable
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+// import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:visitor_pass/controller/checkin_controller.dart';
@@ -56,7 +56,7 @@ class _BeenBeforeVisitorDetailsPageTabletState
             "female".tr,
             style: TextStyle(
               fontWeight: FontWeight.w500,
-              fontSize: 14.sp,
+              fontSize: 14,
               color: AppColor.titleColor,
             ),
           ),
@@ -84,7 +84,7 @@ class _BeenBeforeVisitorDetailsPageTabletState
             'visitor_details'.tr,
             style: TextStyle(
               fontWeight: FontWeight.w700,
-              fontSize: 20.sp,
+              fontSize: 20,
               color: AppColor.primaryColor,
             ),
           ),
@@ -109,247 +109,317 @@ class _BeenBeforeVisitorDetailsPageTabletState
                 child: SingleChildScrollView(
                   child: Padding(
                     padding:
-                        EdgeInsets.symmetric(horizontal: 20.w, vertical: 15.h),
+                        EdgeInsets.symmetric(horizontal: 20, vertical: 15),
                     child: Form(
                       key: _formKey,
                       child: Padding(
                         padding: EdgeInsets.only(
-                            left: 120.w, right: 120.w, top: 36.h),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                            left: 120, right: 120, top: 36),
+                        child: Column(
                           children: [
-                            Expanded(
-                                flex: 1,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    FormTitle(title: 'first_name'.tr),
-                                    CustomFormField(
-                                      readOnly: true,
-                                      controller: findVisitorController
-                                          .firstNameController,
-                                      validatorTxt: 'enter_first_name'.tr,
-                                    ),
-                                    FormTitle(title: 'email'.tr),
-                                    CustomEmailField(
-                                      controller:
-                                          findVisitorController.emailController,
-                                      validatorTxt: 'enter_email'.tr,
-                                    ),
-                                    FormTitle(title: 'select_gender'.tr),
-                                    dropdownItems.isEmpty
-                                        ? Container()
-                                        : Padding(
-                                            padding: EdgeInsets.symmetric(
-                                                vertical: 8.h),
-                                            child: Container(
-                                              height: 48.h,
-                                              width: double.infinity,
-                                              decoration: BoxDecoration(
-                                                border: Border.all(
-                                                  width: 1.w,
-                                                  color: AppColor.borderColor,
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Expanded(
+                                    flex: 1,
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        FormTitle(title: 'first_name'.tr),
+                                        CustomFormField(
+                                          readOnly: true,
+                                          controller: findVisitorController
+                                              .firstNameController,
+                                          validatorTxt: 'enter_first_name'.tr,
+                                        ),
+                                        NonRequiredFormTitle(title: 'email'.tr),
+                                        NonRequiredCustomFormField(
+                                          controller:
+                                              findVisitorController.emailController,
+                                          validatorTxt: 'enter_email'.tr,
+                                        ),
+                                        FormTitle(title: 'select_gender'.tr),
+                                        dropdownItems.isEmpty
+                                            ? Container()
+                                            : Padding(
+                                                padding: EdgeInsets.symmetric(
+                                                    vertical: 8),
+                                                child: Container(
+                                                  height: 48,
+                                                  width: double.infinity,
+                                                  decoration: BoxDecoration(
+                                                    border: Border.all(
+                                                      width: 1,
+                                                      color: AppColor.borderColor,
+                                                    ),
+                                                    borderRadius:
+                                                        BorderRadius.circular(10),
+                                                  ),
+                                                  child: ButtonTheme(
+                                                    alignedDropdown: true,
+                                                    child:
+                                                        DropdownButtonHideUnderline(
+                                                      child: DropdownButton(
+                                                          borderRadius:
+                                                              BorderRadius.all(
+                                                                  Radius.circular(
+                                                                      10)),
+                                                          isExpanded: true,
+                                                          menuMaxHeight:
+                                                              ScreenSize(context)
+                                                                      .mainHeight /
+                                                                  3,
+                                                          items: dropdownItems,
+                                                          value: selectedValue,
+                                                          onChanged:
+                                                              (String? newValue) {
+                                                            selectedValue =
+                                                                newValue!;
+                                                            (context as Element)
+                                                                .markNeedsBuild();
+                                                          }),
+                                                    ),
+                                                  ),
                                                 ),
-                                                borderRadius:
-                                                    BorderRadius.circular(10.r),
                                               ),
-                                              child: ButtonTheme(
-                                                alignedDropdown: true,
-                                                child:
-                                                    DropdownButtonHideUnderline(
-                                                  child: DropdownButton(
-                                                      borderRadius:
-                                                          BorderRadius.all(
-                                                              Radius.circular(
-                                                                  10.r)),
-                                                      isExpanded: true,
-                                                      menuMaxHeight:
-                                                          ScreenSize(context)
-                                                                  .mainHeight /
-                                                              3,
-                                                      items: dropdownItems,
-                                                      value: selectedValue,
-                                                      onChanged:
-                                                          (String? newValue) {
-                                                        selectedValue =
-                                                            newValue!;
-                                                        (context as Element)
-                                                            .markNeedsBuild();
-                                                      }),
-                                                ),
+                                        // FormTitle(title: 'nid_no'.tr),
+                                        // CustomFormField(
+                                        //   readOnly: true,
+                                        //   controller:
+                                        //       findVisitorController.nidController,
+                                        //   validatorTxt: 'enter_nid'.tr,
+                                        // ),
+                                        NonRequiredFormTitle(
+                                            title: 'your_company'.tr),
+                                        NonRequiredCustomFormField(
+                                          controller: findVisitorController
+                                              .companyController,
+                                          validatorTxt: 'enter_company_name'.tr,
+                                        ),
+                                        SizedBox(
+                                          height: 87,
+                                        ),
+                                        // SizedBox(
+                                        //   width: 126,
+                                        //   height: 48,
+                                        //   child: ElevatedButton(
+                                        //     onPressed: () {
+                                        //       validate = false;
+                                        //       Get.back();
+                                        //       (context as Element).markNeedsBuild();
+                                        //     },
+                                        //     style: ElevatedButton.styleFrom(
+                                        //         foregroundColor:
+                                        //             AppColor.primaryColor,
+                                        //         backgroundColor:
+                                        //             AppColor.borderColor,
+                                        //         elevation: 0,
+                                        //         shape: RoundedRectangleBorder(
+                                        //           borderRadius:
+                                        //               BorderRadius.circular(24),
+                                        //         )),
+                                        //     child: Text(
+                                        //       'cancel'.tr,
+                                        //       style: TextStyle(
+                                        //         fontSize: 16,
+                                        //         fontWeight: FontWeight.w600,
+                                        //       ),
+                                        //     ),
+                                        //   ),
+                                        // ),
+                                      ],
+                                    )),
+                                SizedBox(width: 30),
+                                Expanded(
+                                    flex: 1,
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.end,
+                                      children: [
+                                        FormTitle(title: 'last_name'.tr),
+                                        CustomFormField(
+                                          readOnly: true,
+                                          controller: findVisitorController
+                                              .lastNameController,
+                                          validatorTxt: 'enter_last_name'.tr,
+                                        ),
+                                        FormNoteTitle(title: 'phone'.tr),
+                                        // CustomFormFieldNum(
+                                        //   readOnly: false,
+                                        //   controller:
+                                        //       findVisitorController.phoneController,
+                                        //   validatorTxt: 'enter_phone_no'.tr,
+                                        // ),
+                                        IntlPhoneField(
+                                          controller:
+                                              findVisitorController.phoneController,
+                                          keyboardType: TextInputType.number,
+                                          showDropdownIcon: false,
+                                          disableLengthCheck: true,
+                                          decoration: InputDecoration(
+                                            contentPadding:
+                                                const EdgeInsets.symmetric(
+                                                    vertical: 10.0,
+                                                    horizontal: 10.0),
+                                            errorBorder: OutlineInputBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(5.0),
+                                              borderSide: const BorderSide(
+                                                width: 1,
+                                                color: AppColor.redColor,
                                               ),
                                             ),
-                                          ),
-                                    FormTitle(title: 'nid_no'.tr),
-                                    CustomFormField(
-                                      readOnly: true,
-                                      controller:
-                                          findVisitorController.nidController,
-                                      validatorTxt: 'enter_nid'.tr,
-                                    ),
-                                    SizedBox(
-                                      height: 87.h,
-                                    ),
-                                    SizedBox(
-                                      width: 126.w,
-                                      height: 48.h,
-                                      child: ElevatedButton(
-                                        onPressed: () {
-                                          validate = false;
-                                          Get.back();
-                                          (context as Element).markNeedsBuild();
-                                        },
-                                        style: ElevatedButton.styleFrom(
-                                            foregroundColor:
-                                                AppColor.primaryColor,
-                                            backgroundColor:
-                                                AppColor.borderColor,
-                                            elevation: 0,
-                                            shape: RoundedRectangleBorder(
+                                            focusedErrorBorder: OutlineInputBorder(
                                               borderRadius:
-                                                  BorderRadius.circular(24.r),
-                                            )),
-                                        child: Text(
-                                          'cancel'.tr,
-                                          style: TextStyle(
-                                            fontSize: 16.sp,
-                                            fontWeight: FontWeight.w600,
+                                                  BorderRadius.circular(5.0),
+                                              borderSide: const BorderSide(
+                                                width: 1,
+                                                color: AppColor.redColor,
+                                              ),
+                                            ),
+                                            fillColor: Colors.red,
+                                            focusedBorder: const OutlineInputBorder(
+                                              borderRadius: BorderRadius.only(
+                                                  topLeft: Radius.circular(5),
+                                                  bottomLeft: Radius.circular(5)),
+                                              borderSide: BorderSide(
+                                                  width: 1,
+                                                  color: AppColor.primaryColor),
+                                            ),
+                                            enabledBorder: const OutlineInputBorder(
+                                              borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(5),
+                                                bottomLeft: Radius.circular(5),
+                                                topRight: Radius.circular(5),
+                                                bottomRight: Radius.circular(5),
+                                              ),
+                                              borderSide: BorderSide(
+                                                  width: 1,
+                                                  color: AppColor.borderColor),
+                                            ),
                                           ),
+                                          initialCountryCode: findVisitorController
+                                              .countryCodeNameController.text
+                                              .toUpperCase(),
+                                          onChanged: (phone) {
+                                            setState(() {
+                                              countryCodeName = phone.countryISOCode
+                                                  .toLowerCase();
+                                              countryCode = phone.countryCode
+                                                  .replaceAll('+', '');
+                                            });
+                                          },
+                                          onCountryChanged: (value) {
+                                            countryCode = value.dialCode;
+                                            countryCodeName =
+                                                value.code.toLowerCase();
+                                          },
                                         ),
-                                      ),
-                                    ),
-                                  ],
-                                )),
-                            SizedBox(width: 30.w),
-                            Expanded(
-                                flex: 1,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.end,
-                                  children: [
-                                    FormTitle(title: 'last_name'.tr),
-                                    CustomFormField(
-                                      readOnly: true,
-                                      controller: findVisitorController
-                                          .lastNameController,
-                                      validatorTxt: 'enter_last_name'.tr,
-                                    ),
-                                    FormNoteTitle(title: 'phone'.tr),
-                                    // CustomFormFieldNum(
-                                    //   readOnly: false,
-                                    //   controller:
-                                    //       findVisitorController.phoneController,
-                                    //   validatorTxt: 'enter_phone_no'.tr,
-                                    // ),
-                                    IntlPhoneField(
-                                      controller:
-                                          findVisitorController.phoneController,
-                                      keyboardType: TextInputType.number,
-                                      showDropdownIcon: false,
-                                      disableLengthCheck: true,
-                                      decoration: InputDecoration(
-                                        contentPadding:
-                                            const EdgeInsets.symmetric(
-                                                vertical: 10.0,
-                                                horizontal: 10.0),
-                                        errorBorder: OutlineInputBorder(
+                                        // NonRequiredFormTitle(
+                                        //     title: 'your_company'.tr),
+                                        // NonRequiredCustomFormField(
+                                        //   controller: findVisitorController
+                                        //       .companyController,
+                                        //   validatorTxt: 'enter_company_name'.tr,
+                                        // ),
+                                        NonRequiredFormTitle(title: 'address'.tr),
+                                        CustomLargeForm(
+                                          controller: findVisitorController
+                                              .addressController,
+                                          validatorTxt: 'enter_address'.tr,
+                                        ),
+                                        SizedBox(
+                                          height: 32,
+                                        ),
+                                        // SizedBox(
+                                        //   width: 126,
+                                        //   height: 48,
+                                        //   child: ElevatedButton(
+                                        //     onPressed: () {
+                                        //       validateAndSave(context);
+                                        //       (context as Element).markNeedsBuild();
+                                        //     },
+                                        //     style: ElevatedButton.styleFrom(
+                                        //         foregroundColor: Colors.white,
+                                        //         backgroundColor:
+                                        //             AppColor.primaryColor,
+                                        //         elevation: 0,
+                                        //         shape: RoundedRectangleBorder(
+                                        //           borderRadius:
+                                        //               BorderRadius.circular(24),
+                                        //         )),
+                                        //     child: Text(
+                                        //       'continue'.tr,
+                                        //       style: TextStyle(
+                                        //         fontSize: 16,
+                                        //         fontWeight: FontWeight.w600,
+                                        //       ),
+                                        //     ),
+                                        //   ),
+                                        // ),
+                                      ],
+                                    )),
+                              ],
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                SizedBox(
+                                  width: 126,
+                                  height: 48,
+                                  child: ElevatedButton(
+                                    onPressed: () {
+                                      validate = false;
+                                      Get.back();
+                                      (context as Element).markNeedsBuild();
+                                    },
+                                    style: ElevatedButton.styleFrom(
+                                        foregroundColor:
+                                        AppColor.primaryColor,
+                                        backgroundColor:
+                                        AppColor.borderColor,
+                                        elevation: 0,
+                                        shape: RoundedRectangleBorder(
                                           borderRadius:
-                                              BorderRadius.circular(5.0),
-                                          borderSide: const BorderSide(
-                                            width: 1,
-                                            color: AppColor.redColor,
-                                          ),
-                                        ),
-                                        focusedErrorBorder: OutlineInputBorder(
+                                          BorderRadius.circular(24),
+                                        )),
+                                    child: Text(
+                                      'cancel'.tr,
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 126,
+                                  height: 48,
+                                  child: ElevatedButton(
+                                    onPressed: () {
+                                      validateAndSave(context);
+                                      (context as Element).markNeedsBuild();
+                                    },
+                                    style: ElevatedButton.styleFrom(
+                                        foregroundColor: Colors.white,
+                                        backgroundColor:
+                                        AppColor.primaryColor,
+                                        elevation: 0,
+                                        shape: RoundedRectangleBorder(
                                           borderRadius:
-                                              BorderRadius.circular(5.0),
-                                          borderSide: const BorderSide(
-                                            width: 1,
-                                            color: AppColor.redColor,
-                                          ),
-                                        ),
-                                        fillColor: Colors.red,
-                                        focusedBorder: const OutlineInputBorder(
-                                          borderRadius: BorderRadius.only(
-                                              topLeft: Radius.circular(5),
-                                              bottomLeft: Radius.circular(5)),
-                                          borderSide: BorderSide(
-                                              width: 1,
-                                              color: AppColor.primaryColor),
-                                        ),
-                                        enabledBorder: const OutlineInputBorder(
-                                          borderRadius: BorderRadius.only(
-                                            topLeft: Radius.circular(5),
-                                            bottomLeft: Radius.circular(5),
-                                            topRight: Radius.circular(5),
-                                            bottomRight: Radius.circular(5),
-                                          ),
-                                          borderSide: BorderSide(
-                                              width: 1,
-                                              color: AppColor.borderColor),
-                                        ),
-                                      ),
-                                      initialCountryCode: findVisitorController
-                                          .countryCodeNameController.text
-                                          .toUpperCase(),
-                                      onChanged: (phone) {
-                                        setState(() {
-                                          countryCodeName = phone.countryISOCode
-                                              .toLowerCase();
-                                          countryCode = phone.countryCode
-                                              .replaceAll('+', '');
-                                        });
-                                      },
-                                      onCountryChanged: (value) {
-                                        countryCode = value.dialCode;
-                                        countryCodeName =
-                                            value.code.toLowerCase();
-                                      },
-                                    ),
-                                    NonRequiredFormTitle(
-                                        title: 'your_company'.tr),
-                                    NonRequiredCustomFormField(
-                                      controller: findVisitorController
-                                          .companyController,
-                                      validatorTxt: 'enter_company_name'.tr,
-                                    ),
-                                    NonRequiredFormTitle(title: 'address'.tr),
-                                    CustomLargeForm(
-                                      controller: findVisitorController
-                                          .addressController,
-                                      validatorTxt: 'enter_address'.tr,
-                                    ),
-                                    SizedBox(
-                                      height: 32.h,
-                                    ),
-                                    SizedBox(
-                                      width: 126.w,
-                                      height: 48.h,
-                                      child: ElevatedButton(
-                                        onPressed: () {
-                                          validateAndSave(context);
-                                          (context as Element).markNeedsBuild();
-                                        },
-                                        style: ElevatedButton.styleFrom(
-                                            foregroundColor: Colors.white,
-                                            backgroundColor:
-                                                AppColor.primaryColor,
-                                            elevation: 0,
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(24.r),
-                                            )),
-                                        child: Text(
-                                          'continue'.tr,
-                                          style: TextStyle(
-                                            fontSize: 16.sp,
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                        ),
+                                          BorderRadius.circular(24),
+                                        )),
+                                    child: Text(
+                                      'continue'.tr,
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w600,
                                       ),
                                     ),
-                                  ],
-                                )),
+                                  ),
+                                ),
+                              ],
+                            )
                           ],
                         ),
                       ),
@@ -389,7 +459,7 @@ class _BeenBeforeVisitorDetailsPageTabletState
         'company': findVisitorController.companyController.text,
         'address': findVisitorController.addressController.text,
         'purpose': findVisitorController.purposeController.text,
-        'national_identification_no': findVisitorController.nidController.text,
+        // 'national_identification_no': findVisitorController.nidController.text,
         'employee_id': findVisitorController.employeeID.toString(),
         'gender': findVisitorController.genderID,
         'visitor_old': '1',

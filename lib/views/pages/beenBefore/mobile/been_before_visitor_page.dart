@@ -126,8 +126,8 @@ class _BeenBeforeVisitorDetailsPageState
                                 findVisitorController.lastNameController,
                             validatorTxt: 'enter_last_name'.tr,
                           ),
-                          FormTitle(title: 'email'.tr),
-                          CustomEmailField(
+                          NonRequiredFormTitle(title: 'email'.tr),
+                          NonRequiredCustomFormField(
                             controller: findVisitorController.emailController,
                             validatorTxt: 'enter_email'.tr,
                           ),
@@ -237,12 +237,12 @@ class _BeenBeforeVisitorDetailsPageState
                             controller: findVisitorController.companyController,
                             validatorTxt: 'enter_company_name'.tr,
                           ),
-                          FormTitle(title: 'nid_no'.tr),
-                          CustomFormField(
-                            readOnly: true,
-                            controller: findVisitorController.nidController,
-                            validatorTxt: 'enter_nid'.tr,
-                          ),
+                          // FormTitle(title: 'nid_no'.tr),
+                          // CustomFormField(
+                          //   readOnly: true,
+                          //   controller: findVisitorController.nidController,
+                          //   validatorTxt: 'enter_nid'.tr,
+                          // ),
                           NonRequiredFormTitle(title: 'address'.tr),
                           CustomLargeFormNonRequired(
                             controller: findVisitorController.addressController,
@@ -351,7 +351,7 @@ class _BeenBeforeVisitorDetailsPageState
         'company': findVisitorController.companyController.text,
         'address': findVisitorController.addressController.text,
         'purpose': findVisitorController.purposeController.text,
-        'national_identification_no': findVisitorController.nidController.text,
+        // 'national_identification_no': findVisitorController.nidController.text,
         'employee_id': findVisitorController.employeeID.toString(),
         'gender': findVisitorController.genderID,
         'visitor_old': '1',

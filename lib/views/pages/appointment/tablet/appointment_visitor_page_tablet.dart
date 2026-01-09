@@ -130,8 +130,8 @@ class _AppointmentVisitorPageTabletState
                                         .firstNameController,
                                     validatorTxt: 'enter_first_name'.tr,
                                   ),
-                                  FormTitle(title: 'email'.tr),
-                                  CustomEmailField(
+                                  NonRequiredFormTitle(title: 'email'.tr),
+                                  NonRequiredCustomFormField(
                                     controller:
                                         appointmentController.emailController,
                                     validatorTxt: 'enter_email'.tr,
@@ -179,13 +179,13 @@ class _AppointmentVisitorPageTabletState
                                             ),
                                           ),
                                         ),
-                                  FormTitle(title: 'nid_no'.tr),
-                                  CustomFormFieldNum(
-                                    readOnly: true,
-                                    controller:
-                                        appointmentController.nidController,
-                                    validatorTxt: 'enter_nid'.tr,
-                                  ),
+                                  // FormTitle(title: 'nid_no'.tr),
+                                  // CustomFormFieldNum(
+                                  //   readOnly: true,
+                                  //   controller:
+                                  //       appointmentController.nidController,
+                                  //   validatorTxt: 'enter_nid'.tr,
+                                  // ),
                                   SizedBox(
                                     height: 87.h,
                                   ),
@@ -385,7 +385,7 @@ class _AppointmentVisitorPageTabletState
         'company': appointmentController.companyController.text,
         'address': appointmentController.addressController.text,
         'purpose': appointmentController.purposeController.text,
-        'national_identification_no': appointmentController.nidController.text,
+        // 'national_identification_no': appointmentController.nidController.text,
         'employee_id': appointmentController.employeeID.toString(),
         'gender': appointmentController.genderID,
         'visitor_old': '1'
