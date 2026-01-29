@@ -34,7 +34,6 @@ class CheckInController extends GetxController {
     update();
     var response = await CheckInServices().visitorCheckInPost(visitorData, img);
     final responseBody = jsonDecode(await response.stream.bytesToString());
-    print('5400 -=-=-=- >>> $responseBody');
     if (response.statusCode == 200) {
       loader = false;
       update();
