@@ -34,25 +34,43 @@ class CheckInController extends GetxController {
     update();
     var response = await CheckInServices().visitorCheckInPost(visitorData, img);
     final responseBody = jsonDecode(await response.stream.bytesToString());
+    print('5400 -=-=-=- >>> $responseBody');
     if (response.statusCode == 200) {
       loader = false;
       update();
       clearData();
-      Get.rawSnackbar(
-        snackPosition: SnackPosition.TOP,
-        title: 'Successful',
-        message: 'Visitor created successfuly',
-        backgroundColor: AppColor.primaryColor.withOpacity(.9),
-        maxWidth: ScreenSize(context!).mainWidth / 1.007,
-        margin: const EdgeInsets.only(bottom: 20, left: 20, right: 20),
-      );
+      // Get.rawSnackbar(
+      //   snackPosition: SnackPosition.TOP,
+      //   title: 'Successful',
+      //   message: 'Visitor created successfuly',
+      //   backgroundColor: AppColor.primaryColor.withOpacity(.9),
+      //   maxWidth: ScreenSize(context!).mainWidth / 1.007,
+      //   margin: const EdgeInsets.only(bottom: 20, left: 20, right: 20),
+      // );
+      if (context != null && context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: const Text(
+              'Visitor created successfully',
+              style: TextStyle(color: Colors.white),
+            ),
+            backgroundColor: AppColor.primaryColor.withOpacity(.9),
+            behavior: SnackBarBehavior.floating,
+            margin: const EdgeInsets.only(bottom: 20, left: 20, right: 20),
+            duration: const Duration(seconds: 3),
+          ),
+        );
+      }
+
       box.read('isMobile')
-          ? Get.off(() => VisitorIdPage(
+          ? Get.off(
+              () => VisitorIdPage(visitorData: responseBody['data']['visitor']),
+            )
+          : Get.off(
+              () => VisitorIdPageTablet(
                 visitorData: responseBody['data']['visitor'],
-              ))
-          : Get.off(() => VisitorIdPageTablet(
-                visitorData: responseBody['data']['visitor'],
-              ));
+              ),
+            );
     } else if (responseBody['data']['status'] == 422) {
       loader = false;
       update();
@@ -60,30 +78,63 @@ class CheckInController extends GetxController {
         Get.off(() => VisitorCheckInPage());
       }
 
-      Get.rawSnackbar(
-        snackPosition: SnackPosition.TOP,
-        title: 'Failed',
-        message: responseBody['data']['message']['email'] != ''
-            ? responseBody['data']['message']['email'].toString()
-            : responseBody['data']['message']['phone'] != ''
-                ? responseBody['data']['message']['phone']
-                : '',
-          // backgroundColor: Colors.black,
-        backgroundColor: AppColor.redColor.withOpacity(.9),
-        maxWidth: ScreenSize(context!).mainWidth / 1.007,
-        margin: const EdgeInsets.only(bottom: 20, left: 20, right: 20),
-      );
+      // Get.rawSnackbar(
+      //   snackPosition: SnackPosition.TOP,
+      //   title: 'Failed',
+      //   message: responseBody['data']['message']['email'] != ''
+      //       ? responseBody['data']['message']['email'].toString()
+      //       : responseBody['data']['message']['phone'] != ''
+      //           ? responseBody['data']['message']['phone']
+      //           : '',
+      //     // backgroundColor: Colors.black,
+      //   backgroundColor: AppColor.redColor.withOpacity(.9),
+      //   maxWidth: ScreenSize(context!).mainWidth / 1.007,
+      //   margin: const EdgeInsets.only(bottom: 20, left: 20, right: 20),
+      // );
+      if (context != null && context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              responseBody['data']['message']['email'] != ''
+                  ? responseBody['data']['message']['email'].toString()
+                  : responseBody['data']['message']['phone'] != ''
+                  ? responseBody['data']['message']['phone']
+                  : '',
+              style: const TextStyle(color: Colors.white),
+            ),
+            backgroundColor: AppColor.redColor.withOpacity(.9),
+            behavior: SnackBarBehavior.floating,
+            margin: const EdgeInsets.only(bottom: 20, left: 20, right: 20),
+            duration: const Duration(seconds: 3),
+          ),
+        );
+      }
     } else {
       loader = false;
       update();
-      Get.rawSnackbar(
-        snackPosition: SnackPosition.TOP,
-        title: 'Failed',
-        message: 'Please enter valid input',
-        backgroundColor: AppColor.primaryColor.withOpacity(.9),
-        maxWidth: ScreenSize(context!).mainWidth / 1.007,
-        margin: const EdgeInsets.only(bottom: 20, left: 20, right: 20),
-      );
+      if (context != null && context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: const Text(
+              'Please enter valid input',
+              style: TextStyle(color: Colors.white),
+            ),
+            backgroundColor: AppColor.primaryColor.withOpacity(.9),
+            behavior: SnackBarBehavior.floating,
+            margin: const EdgeInsets.only(bottom: 20, left: 20, right: 20),
+            duration: const Duration(seconds: 3),
+          ),
+        );
+      }
+
+      // Get.rawSnackbar(
+      //   snackPosition: SnackPosition.TOP,
+      //   title: 'Failed',
+      //   message: 'Please enter valid input',
+      //   backgroundColor: AppColor.primaryColor.withOpacity(.9),
+      //   maxWidth: ScreenSize(context!).mainWidth / 1.007,
+      //   margin: const EdgeInsets.only(bottom: 20, left: 20, right: 20),
+      // );
     }
   }
 
@@ -91,54 +142,65 @@ class CheckInController extends GetxController {
     loader = true;
     update();
 
-    var response =
-        await CheckInServices().visitorValidateCheckInPost(visitorData);
+    var response = await CheckInServices().visitorValidateCheckInPost(
+      visitorData,
+    );
     final responseBody = jsonDecode(await response.stream.bytesToString());
-print('5400 =-=-=- ${responseBody}');
+    print('5400 =-=-=- ${responseBody}');
     if (response.statusCode == 200) {
       loader = false;
       update();
 
-      Get.off(() => box.read('isMobile')
-          ? TakePhotoPage(visitorData: visitorData)
-          : TakePhotoPageTablet(visitorData: visitorData));
+      Get.off(
+        () => box.read('isMobile')
+            ? TakePhotoPage(visitorData: visitorData)
+            : TakePhotoPageTablet(visitorData: visitorData),
+      );
     } else if (responseBody['data']['status'] == 422) {
       loader = false;
       update();
-      final messageMap  = responseBody['data']['message'] as Map;
-      Get.rawSnackbar(
-        snackPosition: SnackPosition.TOP,
-        title: 'Failed',
-        message:messageMap.values.first[0].toString(),
-        // responseBody['data']['message']['email'] != ''
-        //     ? responseBody['data']['message']['email'].toString()
-        //     : responseBody['data']['message']['phone'] != ''
-        //         ? responseBody['data']['message']['phone']
-        //         : responseBody['data']['message']
-        //                     ['national_identification_no'] !=
-        //                 ''
-        //             ? responseBody['data']['message']
-        //                     ['national_identification_no']
-        //                 .toString()
-        //             : responseBody['data']['message']['employee_id'] != ''
-        //                 ? responseBody['data']['message']['employee_id']
-        //                     .toString()
-        //                 : '',
-        backgroundColor: AppColor.redColor.withOpacity(.9),
-        maxWidth: ScreenSize(context!).mainWidth / 1.007,
-        margin: const EdgeInsets.only(bottom: 20, left: 20, right: 20),
-      );
+      final messageMap = responseBody['data']['message'] as Map;
+      if (context != null && context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(messageMap.values.first[0].toString()),
+            backgroundColor: AppColor.redColor.withOpacity(.9),
+            behavior: SnackBarBehavior.floating,
+            margin: const EdgeInsets.only(bottom: 20, left: 20, right: 20),
+            duration: const Duration(seconds: 3),
+          ),
+        );
+      }
+      // Get.rawSnackbar(
+      //   snackPosition: SnackPosition.TOP,
+      //   title: 'Failed',
+      //   message:messageMap.values.first[0].toString(),
+      //   backgroundColor: AppColor.redColor.withOpacity(.9),
+      //   maxWidth: ScreenSize(context!).mainWidth / 1.007,
+      //   margin: const EdgeInsets.only(bottom: 20, left: 20, right: 20),
+      // );
     } else {
       loader = false;
       update();
-      Get.rawSnackbar(
-        snackPosition: SnackPosition.TOP,
-        title: 'Failed',
-        message: 'Please enter valid input',
-        backgroundColor: AppColor.primaryColor.withOpacity(.9),
-        maxWidth: ScreenSize(context!).mainWidth / 1.007,
-        margin: const EdgeInsets.only(bottom: 20, left: 20, right: 20),
-      );
+      // Get.rawSnackbar(
+      //   snackPosition: SnackPosition.TOP,
+      //   title: 'Failed',
+      //   message: 'Please enter valid input',
+      //   backgroundColor: AppColor.primaryColor.withOpacity(.9),
+      //   maxWidth: ScreenSize(context!).mainWidth / 1.007,
+      //   margin: const EdgeInsets.only(bottom: 20, left: 20, right: 20),
+      // );
+      if (context != null && context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Please enter valid input'),
+            backgroundColor: AppColor.primaryColor.withOpacity(.9),
+            behavior: SnackBarBehavior.floating,
+            margin: const EdgeInsets.only(bottom: 20, left: 20, right: 20),
+            duration: const Duration(seconds: 3),
+          ),
+        );
+      }
     }
   }
 
